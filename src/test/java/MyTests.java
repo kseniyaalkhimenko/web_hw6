@@ -1,3 +1,6 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.example.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +12,8 @@ public class MyTests extends AbstractTest {
 
     @Test
     @DisplayName("Authorization")
+    @Description("Website authorization with login and password")
+    @Severity(SeverityLevel.CRITICAL)
     @Order(1)
     void signInTest() {
         new MainPage(getWebDriver()).clickSignInButton();
@@ -19,6 +24,8 @@ public class MyTests extends AbstractTest {
 
     @Test
     @DisplayName("Search dresses")
+    @Description("Searching dresses by query")
+    @Severity(SeverityLevel.MINOR)
     @Order(2)
     void searchDresses() {
         new MainPage(getWebDriver()).search("dress");
@@ -27,6 +34,8 @@ public class MyTests extends AbstractTest {
 
     @Test
     @DisplayName("Add M-size product to the cart")
+    @Description("Adding M-size product to the shopping cart")
+    @Severity(SeverityLevel.NORMAL)
     @Order(3)
     void addToCart() throws InterruptedException {
         new MainPage(getWebDriver()).clickWomen();
@@ -41,6 +50,8 @@ public class MyTests extends AbstractTest {
 
     @Test
     @DisplayName("Delete product from cart")
+    @Description("Deleting product from shopping cart")
+    @Severity(SeverityLevel.NORMAL)
     @Order(4)
     void deleteFromCart() throws InterruptedException {
         new MainPage(getWebDriver()).viewMyCart();
@@ -51,15 +62,19 @@ public class MyTests extends AbstractTest {
 
     @Test
     @DisplayName("Newsletter subscribe")
+    @Description("Newsletter subscription by email")
+    @Severity(SeverityLevel.TRIVIAL)
     @Order(5)
     void newsletterSubscribe() {
         Assertions.assertTrue(getWebDriver().findElement(By.xpath(".//input[@id='newsletter-input']")).isEnabled(), "Error");
-        new MainPage(getWebDriver()).newsletterInput("gbgbgb@gbgb.rru");
+        new MainPage(getWebDriver()).newsletterInput();
         Assertions.assertEquals("Newsletter : You have successfully subscribed to this newsletter.", getWebDriver().findElement(By.xpath(".//p[@class='alert alert-success']")).getText());
     }
 
     @Test
     @DisplayName("Sign out")
+    @Description("Logging out")
+    @Severity(SeverityLevel.NORMAL)
     @Order(6)
     void signOut() {
         new MainPage(getWebDriver()).signOut();

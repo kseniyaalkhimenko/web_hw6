@@ -51,11 +51,21 @@ public class MainPage extends AbstractPage {
         this.signOutButton.click();
     }
 
-    public void newsletterInput(String email) {
+   /*public void newsletterInput(String email) {
         Actions enterEmail = new Actions(getDriver());
         enterEmail
                 .click(newsletterInput)
                 .sendKeys(newsletterInput, email)
+                .click(submitNewsletterButton)
+                .build()
+                .perform();
+    }*/
+
+    public void newsletterInput() {
+        Actions enterEmail = new Actions(getDriver());
+        enterEmail
+                .click(newsletterInput)
+                .sendKeys(newsletterInput, (getSaltString()+"@gb.ru"))
                 .click(submitNewsletterButton)
                 .build()
                 .perform();
